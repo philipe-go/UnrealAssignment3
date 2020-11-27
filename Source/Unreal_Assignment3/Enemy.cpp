@@ -41,6 +41,14 @@ void AEnemy::Tick(float DeltaTime)
 	}
 	SkeletalMesh->SetScalarParameterValueOnMaterials(TEXT("Hit"), HitValue);
 
+	// Enemy Dies if their HP < 0
+	if (Enemy_HP <= 0)
+	{
+
+		SkeletalMesh->SetScalarParameterValueOnMaterials(TEXT("enemy is DEAD!"), HitValue);
+		Destroy();
+	}
+
 }
 
 // Called to bind functionality to input

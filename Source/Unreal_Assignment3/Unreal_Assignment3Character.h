@@ -37,6 +37,10 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	float HP = 1.0f;
 
+	/** Player MANA **/
+	UPROPERTY(BlueprintReadOnly)
+	float Mana = 1.0f;
+
 
 private:
 	/** Top down camera */

@@ -22,6 +22,8 @@ void AUnreal_Assignment3PlayerController::PlayerTick(float DeltaTime)
 	{
 		MoveToMouseCursor();
 	}
+
+	
 }
 
 void AUnreal_Assignment3PlayerController::SetupInputComponent()
@@ -118,23 +120,34 @@ void AUnreal_Assignment3PlayerController::OnSetDestinationReleased()
 // To Shoot
 void AUnreal_Assignment3PlayerController::OnShoot()
 {
-	// Print String here :) 
-	GEngine->AddOnScreenDebugMessage(0, 2, FColor::Red, TEXT("Pew"));
 	AUnreal_Assignment3Character* MyCharacter = Cast<AUnreal_Assignment3Character>(GetPawn());
-
-
-	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
-
-	if (Hit.bBlockingHit)
+	//When the player spawns a projectile, it will use 10% of the mana
+	
+	if (MyCharacter->Mana > 0)
 	{
-		FVector Direction = Hit.ImpactPoint - MyCharacter->GetActorLocation();
-		Direction.Z = 0;
-		MyCharacter->SetActorRotation(FRotationMatrix::MakeFromX(Direction).Rotator());
-	}
 
-	UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, MyCharacter->GetActorLocation());
-	MyCharacter->Shoot();
+		MyCharacter->Mana -= 0.1f;
+		// Print String here :) 
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Blue, TEXT("Pew"));
+		FHitResult Hit;
+		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+
+		if (Hit.bBlockingHit)
+		{
+			FVector Direction = Hit.ImpactPoint - MyCharacter->GetActorLocation();
+			Direction.Z = 0;
+			MyCharacter->SetActorRotation(FRotationMatrix::MakeFromX(Direction).Rotator());
+		}
+
+		UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, MyCharacter->GetActorLocation());
+		MyCharacter->Shoot();
+
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Blue, TEXT("Out of Mana!"));
+	}
+	
 }
 
 // Bind key to lose HP

@@ -64,6 +64,10 @@ AUnreal_Assignment3Character::AUnreal_Assignment3Character()
 void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
+	
+
+	
+	
 
 	if (CursorToWorld != nullptr)
 	{
