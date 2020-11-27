@@ -23,7 +23,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void OnHit();
-	
+
+	/** Enemy Health **/
+	UPROPERTY(BlueprintReadOnly)
+	float Enemy_HP = 1.0f;
 
 protected:
 	// Called when the game starts or when spawned

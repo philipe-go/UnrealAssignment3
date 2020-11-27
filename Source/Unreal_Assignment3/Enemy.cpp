@@ -14,6 +14,11 @@ AEnemy::AEnemy()
 void AEnemy::OnHit()
 {
 	HitValue = 1;
+    
+	// When the enemy gets hit, he loses 10%
+	Enemy_HP -= 0.1f;
+
+	GEngine->AddOnScreenDebugMessage(0, 2, FColor::Red, TEXT("Enemy is HIT"));
 }
 
 // Called when the game starts or when spawned
@@ -28,6 +33,7 @@ void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	
 	HitValue -= DeltaTime;
 	if (HitValue < 0)
 	{
@@ -43,4 +49,6 @@ void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
+
+
 
