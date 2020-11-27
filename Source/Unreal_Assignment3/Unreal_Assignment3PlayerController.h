@@ -41,6 +41,7 @@ protected:
 
 	void OnShoot();
 
+	void LoseHP();
 };
 
 

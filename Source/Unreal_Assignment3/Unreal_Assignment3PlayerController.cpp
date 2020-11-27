@@ -39,6 +39,7 @@ void AUnreal_Assignment3PlayerController::SetupInputComponent()
 	InputComponent->BindAction("ResetVR", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnResetVR);
 	// support touch devices 
 	InputComponent->BindAction("Shoot", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnShoot);
+	InputComponent->BindAction("LoseHP", IE_Pressed, this, &AUnreal_Assignment3PlayerController::LoseHP);
 
 }
 
@@ -134,4 +135,15 @@ void AUnreal_Assignment3PlayerController::OnShoot()
 
 	UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, MyCharacter->GetActorLocation());
 	MyCharacter->Shoot();
+}
+
+// Bind key to lose HP
+void AUnreal_Assignment3PlayerController::LoseHP()
+{
+	AUnreal_Assignment3Character* MyPawn = Cast<AUnreal_Assignment3Character>(GetPawn());
+	if (MyPawn != nullptr)
+	{
+		MyPawn->HP -= 0.1f;
+	}
+
 }

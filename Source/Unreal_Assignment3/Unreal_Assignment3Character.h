@@ -33,6 +33,11 @@ public:
 
 	void Shoot();
 
+	/** Player Health **/
+	UPROPERTY(BlueprintReadOnly)
+	float HP = 1.0f;
+
+
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
