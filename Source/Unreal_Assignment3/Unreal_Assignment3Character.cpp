@@ -65,16 +65,13 @@ void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
 	
-
-	
-	
-
 	if (CursorToWorld != nullptr)
 	{
 		if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
 		{
 			if (UWorld* World = GetWorld())
 			{
+				
 				FHitResult HitResult;
 				FCollisionQueryParams Params(NAME_None, FCollisionQueryParams::GetUnknownStatId());
 				FVector StartLocation = TopDownCameraComponent->GetComponentLocation();
@@ -100,4 +97,5 @@ void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
 void AUnreal_Assignment3Character::Shoot()
 {
 	GetWorld()->SpawnActor<AActor>(ProjectileActor, ProjectileOrigin->GetComponentTransform());
+	ShootAnim();
 }

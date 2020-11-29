@@ -33,14 +33,19 @@ public:
 
 	void Shoot();
 
+	UFUNCTION(BlueprintImplementableEvent)
+		void ShootAnim();
+
 	/** Player Health **/
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	float HP = 1.0f;
 
 	/** Player MANA **/
 	UPROPERTY(BlueprintReadOnly)
 	float Mana = 1.0f;
 
+
+	
 
 private:
 	/** Top down camera */
@@ -54,5 +59,8 @@ private:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
+
+
+	
 };
 

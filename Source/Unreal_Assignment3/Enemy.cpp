@@ -2,6 +2,9 @@
 
 
 #include "Enemy.h"
+#include "Unreal_Assignment3Character.h"
+#include "Unreal_Assignment3PlayerController.h"
+#include "Engine/World.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -33,7 +36,7 @@ void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	
+	// LERP -> Color goes back to white
 	HitValue -= DeltaTime;
 	if (HitValue < 0)
 	{
@@ -45,8 +48,19 @@ void AEnemy::Tick(float DeltaTime)
 	if (Enemy_HP <= 0)
 	{
 
-		SkeletalMesh->SetScalarParameterValueOnMaterials(TEXT("enemy is DEAD!"), HitValue);
+		SkeletalMesh->SetScalarParameterValueOnMaterials(TEXT("Enemy is DEAD!"), HitValue);
 		Destroy();
+	}
+
+	// CHECK DISTANCE BETWEEN PLAYER AND ENEMY
+	FVector PlayerLocation = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+	FVector EnemyPos = GetActorLocation();
+
+
+
+	if (FVector::Dist(PlayerLocation, EnemyPos) <= 400)
+	{
+		onAttack();
 	}
 
 }
@@ -56,6 +70,13 @@ void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void AEnemy::onAttack()
+{
+	GEngine->AddOnScreenDebugMessage(0, 0, FColor::Red, TEXT("ANGRY ENEMY!"));
+
+	Detected();
 }
 
 

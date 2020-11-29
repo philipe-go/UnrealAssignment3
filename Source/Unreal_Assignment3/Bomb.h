@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Bomb.generated.h"
 
+
 UCLASS()
 class UNREAL_ASSIGNMENT3_API ABomb : public AActor
 {
@@ -15,6 +16,12 @@ public:
 	// Sets default values for this actor's properties
 	ABomb();
 
+	// Has a visual component
+	UPROPERTY(VisibleAnywhere)
+		UStaticMeshComponent* Mesh;
+
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -22,5 +29,13 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	// write "override" at the end incase we make a signature mistake , its good practice
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void Explode();
+	
+	void withinRadius();
 
 };

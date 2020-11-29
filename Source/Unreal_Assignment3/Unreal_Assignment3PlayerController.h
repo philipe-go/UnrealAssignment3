@@ -14,6 +14,7 @@ class AUnreal_Assignment3PlayerController : public APlayerController
 public:
 	AUnreal_Assignment3PlayerController();
 
+
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;

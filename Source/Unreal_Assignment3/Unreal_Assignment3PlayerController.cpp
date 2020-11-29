@@ -117,7 +117,7 @@ void AUnreal_Assignment3PlayerController::OnSetDestinationReleased()
 	bMoveToMouseCursor = false;
 }
 
-// To Shoot
+// To Shoot projectiles
 void AUnreal_Assignment3PlayerController::OnShoot()
 {
 	AUnreal_Assignment3Character* MyCharacter = Cast<AUnreal_Assignment3Character>(GetPawn());
@@ -127,6 +127,7 @@ void AUnreal_Assignment3PlayerController::OnShoot()
 	{
 
 		MyCharacter->Mana -= 0.1f;
+
 		// Print String here :) 
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Blue, TEXT("Pew"));
 		FHitResult Hit;
