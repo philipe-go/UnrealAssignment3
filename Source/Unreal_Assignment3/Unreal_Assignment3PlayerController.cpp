@@ -42,6 +42,7 @@ void AUnreal_Assignment3PlayerController::SetupInputComponent()
 	// support touch devices 
 	InputComponent->BindAction("Shoot", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnShoot);
 	InputComponent->BindAction("LoseHP", IE_Pressed, this, &AUnreal_Assignment3PlayerController::LoseHP);
+	InputComponent->BindAction("AOE", IE_Pressed, this, &AUnreal_Assignment3PlayerController::onAOE);
 
 }
 
@@ -126,7 +127,7 @@ void AUnreal_Assignment3PlayerController::OnShoot()
 	if (MyCharacter->Mana > 0)
 	{
 
-		MyCharacter->Mana -= 0.1f;
+		
 
 		// Print String here :) 
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Blue, TEXT("Pew"));
@@ -141,6 +142,7 @@ void AUnreal_Assignment3PlayerController::OnShoot()
 		}
 
 		UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, MyCharacter->GetActorLocation());
+		MyCharacter->Mana -= 0.1f;
 		MyCharacter->Shoot();
 
 	}
@@ -160,4 +162,23 @@ void AUnreal_Assignment3PlayerController::LoseHP()
 		MyPawn->HP -= 0.1f;
 	}
 
+}
+
+void AUnreal_Assignment3PlayerController::onAOE()
+{
+	GEngine->AddOnScreenDebugMessage(0, 2, FColor::Cyan, TEXT("BOOM!"));
+	AUnreal_Assignment3Character* MyCharacter = Cast<AUnreal_Assignment3Character>(GetPawn());
+
+	FHitResult Hit;
+	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+
+	if (Hit.bBlockingHit)
+	{
+		FVector Direction = Hit.ImpactPoint - MyCharacter->GetActorLocation();
+		Direction.Z = 0;
+		MyCharacter->SetActorRotation(FRotationMatrix::MakeFromX(Direction).Rotator());
+	}
+
+	MyCharacter->AOE();
+	MyCharacter->Mana -= 0.2f;
 }
