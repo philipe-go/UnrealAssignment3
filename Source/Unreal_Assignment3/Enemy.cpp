@@ -4,7 +4,11 @@
 #include "Enemy.h"
 #include "Unreal_Assignment3Character.h"
 #include "Unreal_Assignment3PlayerController.h"
+#include "GameFramework/PlayerController.h"
 #include "Engine/World.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "Runtime/Engine/Classes/Components/DecalComponent.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -24,10 +28,12 @@ void AEnemy::OnHit()
 	GEngine->AddOnScreenDebugMessage(0, 2, FColor::Red, TEXT("Enemy is HIT"));
 }
 
+
 // Called when the game starts or when spawned
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
+	
 	
 }
 
@@ -78,6 +84,8 @@ void AEnemy::onAttack()
 
 	Detected();
 }
+
+
 
 
 

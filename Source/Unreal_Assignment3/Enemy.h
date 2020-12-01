@@ -28,6 +28,7 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	float Enemy_HP = 1.0f;
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -43,4 +44,6 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void Detected();
+
+
 };

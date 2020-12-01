@@ -46,14 +46,26 @@ public:
 	void AOE();
 
 	/** Player Health **/
-	UPROPERTY(BlueprintReadWrite)
-	float HP = 1.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float HP = 1.0f;
+
+	/** Current Health **/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float currHP;
+
+	/** Enemy DMG **/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float enemyDMG = 0.1f;
 
 	/** Player MANA **/
-	UPROPERTY(BlueprintReadOnly)
-	float Mana = 1.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float Mana = 1.0f;
 
+	UFUNCTION(BlueprintCallable)
+		void Dodging();
 
+	UFUNCTION(BlueprintCallable)
+		void hitsPlayer();
 	
 
 private:
