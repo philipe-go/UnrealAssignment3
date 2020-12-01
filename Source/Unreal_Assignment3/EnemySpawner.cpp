@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "EnemySpawner.h"
 #include "DrawDebugHelpers.h"
 #include "Components/SphereComponent.h"
 #include "Unreal_Assignment3Character.h"
 #include "Enemy.h"
-#include "EnemySpawner.h"
 
 // Sets default values
 AEnemySpawner::AEnemySpawner()
@@ -22,12 +22,6 @@ AEnemySpawner::AEnemySpawner()
 
 	//### Delegate to start Overlap event when triggered
 	TriggerArea->OnComponentBeginOverlap.AddDynamic(this, &AEnemySpawner::OnOverlapBegin);
-
-	//### Move Spawn Area to center of trap
-	SpawnBounds.Min = TrapMesh->GetComponentLocation();
-	SpawnBounds.Max = FVector(SpawnRadius, SpawnRadius, 0);
-
-	DrawDebugBox(GetWorld(), SpawnBounds.GetCenter(), SpawnBounds.Max, FColor::Red, false, 0.1, -1, 2);
 }
 
 void AEnemySpawner::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
@@ -44,13 +38,16 @@ void AEnemySpawner::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* 
 void AEnemySpawner::BeginPlay()
 {
 	Super::BeginPlay();
+
+	
 }
 
 // Called every frame
 void AEnemySpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	SpawnBounds.Min = TrapMesh->GetComponentLocation();
+	//SpawnBounds.Min = TrapMesh->GetComponentLocation();
+	//SpawnBounds.Min.Z = 0;
 }
 
 void AEnemySpawner::SpawnEnemies(AActor* MyPlayer)
@@ -58,11 +55,16 @@ void AEnemySpawner::SpawnEnemies(AActor* MyPlayer)
 	FVector Location;
 	const FRotator Rotation = FRotator::ZeroRotator;
 
+	//### Move Spawn Area to center of trap
+	SpawnBounds.Min = GetActorLocation();
+	SpawnBounds.Max = FVector(SpawnBounds.GetCenter().X + SpawnRadius, SpawnBounds.GetCenter().Y + SpawnRadius, 0);
+	DrawDebugBox(GetWorld(), SpawnBounds.Min, SpawnBounds.Max, FColor::Red, false, 5, -1, 2);
+
 	while (SpawnAmount > 0)
 	{
 		Location = FMath::RandPointInBox(SpawnBounds);
 		Location.Z = GetActorLocation().Z;
-		OnEnemySpawn(Location, Rotation);
+		OnEnemySpawn(Location, Rotation); 
 		AEnemy* NewEnemy = GetWorld()->SpawnActor<AEnemy>(EnemyToSpawn, Location, Rotation);
 
 		SpawnAmount--;

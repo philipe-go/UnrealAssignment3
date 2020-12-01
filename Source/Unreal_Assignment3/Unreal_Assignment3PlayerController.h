@@ -48,6 +48,8 @@ protected:
 
 	/** Shooting AOE Bombs. */
 	void onAOE();
+
+	void OnAction();
 };
 
 

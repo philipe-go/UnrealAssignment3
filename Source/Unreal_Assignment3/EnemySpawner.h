@@ -50,6 +50,7 @@ public:
 	UPROPERTY(EditAnywhere)
 		float SpawnRadius = 600;
 
+	//### Custom event to spawn Niagara System at each spawned enemy's location
 	UFUNCTION(BlueprintImplementableEvent)
 		void OnEnemySpawn(FVector loc, FRotator rot);
 
