@@ -66,6 +66,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void hitsPlayer();
+
+	//### Field created to store the actor receiver of the action when pressing input 'E'
+	AActor* OnActionReceiver = nullptr;
 	
 
 private:

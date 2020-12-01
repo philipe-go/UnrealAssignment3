@@ -9,13 +9,23 @@
 UCLASS()
 class UNREAL_ASSIGNMENT3_API ALootbox : public AActor
 {
+
+#pragma region Default Fields
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+public:
 	ALootbox();
 
+protected:
+	virtual void BeginPlay() override;
 
+public:
+	virtual void Tick(float DeltaTime) override;
+
+#pragma endregion
+
+#pragma region Custom Fields
+public:
 	// Has a visual component
 	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* Mesh;
@@ -24,16 +34,30 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		int RandomNum;
 
+	UPROPERTY(VisibleAnywhere)
+		class USphereComponent* TriggerArea;
 
+	UFUNCTION()
+		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	UFUNCTION()
+		void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	//### Item type to be spawned in the trap area. Enemy should be added in the Editor
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AActor> HealthPotion;
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AActor> ManaPotion;
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AActor> SpeedPotion;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnLootOpen(FVector loc, FRotator rot);
 
 	void OpenLoot();
+
+	UInputComponent* ActionInput;
+
+	bool bPlayerClose = false;
+#pragma endregion
 };

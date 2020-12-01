@@ -6,6 +6,7 @@
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Unreal_Assignment3Character.h"
 #include "Engine/World.h"
+#include "Lootbox.h"
 
 AUnreal_Assignment3PlayerController::AUnreal_Assignment3PlayerController()
 {
@@ -44,6 +45,7 @@ void AUnreal_Assignment3PlayerController::SetupInputComponent()
 	InputComponent->BindAction("LoseHP", IE_Pressed, this, &AUnreal_Assignment3PlayerController::LoseHP);
 	InputComponent->BindAction("AOE", IE_Pressed, this, &AUnreal_Assignment3PlayerController::onAOE);
 
+	InputComponent->BindAction("Action", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnAction);
 }
 
 void AUnreal_Assignment3PlayerController::OnResetVR()
@@ -189,5 +191,16 @@ void AUnreal_Assignment3PlayerController::onAOE()
 	else
 	{
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Blue, TEXT("Out of Mana!"));
+	}
+}
+
+void AUnreal_Assignment3PlayerController::OnAction()
+{
+	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(GetPawn());
+
+	if (MyPlayer)
+	{
+		//### Bind the action to the lootbox methods.
+		Cast<ALootbox>(MyPlayer->OnActionReceiver)->OpenLoot();
 	}
 }
