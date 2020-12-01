@@ -59,6 +59,10 @@ AUnreal_Assignment3Character::AUnreal_Assignment3Character()
 	// Add Projectile
 	ProjectileOrigin = CreateAbstractDefaultSubobject<USceneComponent>(TEXT("ProjectileOrigin"));
 	ProjectileOrigin->SetupAttachment(RootComponent);
+
+	// Add AOE Projectile
+	AOEOrigin = CreateAbstractDefaultSubobject<USceneComponent>(TEXT("AOEOrigin"));
+	AOEOrigin->SetupAttachment(RootComponent);
 }
 
 void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
@@ -98,4 +102,9 @@ void AUnreal_Assignment3Character::Shoot()
 {
 	GetWorld()->SpawnActor<AActor>(ProjectileActor, ProjectileOrigin->GetComponentTransform());
 	ShootAnim();
+}
+
+void AUnreal_Assignment3Character::AOE()
+{
+	GetWorld()->SpawnActor<AActor>(AOEActor, AOEOrigin->GetComponentTransform());
 }

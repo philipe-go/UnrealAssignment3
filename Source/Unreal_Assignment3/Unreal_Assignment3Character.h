@@ -36,6 +36,15 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		void ShootAnim();
 
+	/** This is for the AOE  **/
+	UPROPERTY(VisibleAnywhere)
+		USceneComponent* AOEOrigin;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AActor> AOEActor;
+
+	void AOE();
+
 	/** Player Health **/
 	UPROPERTY(BlueprintReadWrite)
 	float HP = 1.0f;

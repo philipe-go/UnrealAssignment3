@@ -40,9 +40,14 @@ protected:
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
 
+	/** Shooting Projectiles. */
 	void OnShoot();
 
+	/** Losing HP. */
 	void LoseHP();
+
+	/** Shooting AOE Bombs. */
+	void onAOE();
 };
 
 
