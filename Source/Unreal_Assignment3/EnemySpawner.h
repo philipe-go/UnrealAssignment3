@@ -32,6 +32,9 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		class USphereComponent* TriggerArea;
 
+	UPROPERTY(EditAnywhere)
+	FBox SpawnBounds;
+
 	UFUNCTION()
 		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
@@ -45,14 +48,12 @@ public:
 
 	//### Distance from player where the enemies can spawn
 	UPROPERTY(EditAnywhere)
-		float SpawnRadius = 400;
+		float SpawnRadius = 600;
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void OnEnemySpawn(FVector loc, FRotator rot);
 
 private:
-	FBox SpawnBounds;
-	
 	void SpawnEnemies(AActor* MyPlayer);
 #pragma endregion 
 };
