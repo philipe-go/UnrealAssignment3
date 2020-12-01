@@ -1,0 +1,74 @@
+[33mcommit 0a2a25f497d22a9d7711d12832d7efa2d083b8a7[m[33m ([m[1;36mHEAD -> [m[1;32mpotions[m[33m)[m
+Merge: b1d2cf1 51f6882
+Author: Philipe Go <philipe.ng@protonmail.com>
+Date:   Mon Nov 30 23:39:55 2020 -0500
+
+    Merge remote-tracking branch 'upstream/main' into potions
+
+[33mcommit b1d2cf1ffa8bd191ace889b291030ebc78a89c16[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Philipe Go <philipe.ng@protonmail.com>
+Date:   Mon Nov 30 23:34:13 2020 -0500
+
+    Added EnemySpawn cpp class + created BP_Trap
+
+[33mcommit 51f6882476df98298acca04621e421a89e0db749[m[33m ([m[1;31mupstream/main[m[33m)[m
+Author: Arisa <aohashi@live.com>
+Date:   Mon Nov 30 19:31:54 2020 -0500
+
+    Added LERP for the Enemy
+
+[33mcommit 29b3175e58cd1fc841e550a92d5d38ad089dbaed[m
+Author: Arisa <aohashi@live.com>
+Date:   Mon Nov 30 14:18:16 2020 -0500
+
+    Added AOE Mana Spell
+
+[33mcommit 7b289b92a673ef72567ee60b30cece339533164b[m[33m ([m[1;32mmain[m[33m)[m
+Author: Arisa <aohashi@live.com>
+Date:   Sun Nov 29 14:33:04 2020 -0500
+
+    no plugin
+
+[33mcommit 6217ba88d9576780c831802d2958e48b3ad81141[m
+Author: Arisa <aohashi@live.com>
+Date:   Sun Nov 29 12:13:05 2020 -0500
+
+    Added Attack Animation (Part 4)
+    
+    Enemy attack is triggered by C++ code. The rest, like playing the animations and registering for hits, can be done in Blueprint.
+
+[33mcommit bc64aa1fd82147853b0e50b34d48d84e88bad025[m
+Author: Arisa <aohashi@live.com>
+Date:   Fri Nov 27 18:08:17 2020 -0500
+
+    Added Player Mana (UI)
+
+[33mcommit 9ab39c6cdace97806df233e13608546e5feb42ba[m
+Author: Arisa <aohashi@live.com>
+Date:   Fri Nov 27 16:04:22 2020 -0500
+
+    Added Enemy HP (UI) and Projectile DMG
+    
+    Enemy has an HP above its head and will take 10% dmg from the projectile that hit him
+
+[33mcommit 8cd0b22d2414c362f0cfb2712a4237a5a9a86099[m
+Author: Arisa <aohashi@live.com>
+Date:   Fri Nov 27 14:19:40 2020 -0500
+
+    Added Player HP (UI)
+    
+    When player press "F" loses 10% of their HP.
+
+[33mcommit 8d5811cf45bedf327affc816d536aded7fb28b32[m
+Author: Arisa <aohashi@live.com>
+Date:   Fri Nov 27 12:16:10 2020 -0500
+
+    Big update
+    
+    Added AI Enemy (LERP dynamic matt), projectile span from player, new game mode
+
+[33mcommit b462cdab72274f7b9819a5a20af9448dbdcfe134[m
+Author: Arisa <aohashi@live.com>
+Date:   Fri Nov 27 08:10:51 2020 -0500
+
+    Initial commit
