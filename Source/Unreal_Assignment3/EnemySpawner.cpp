@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "DrawDebugHelpers.h"
 #include "Components/SphereComponent.h"
 #include "Unreal_Assignment3Character.h"
 #include "Enemy.h"
@@ -23,10 +24,10 @@ AEnemySpawner::AEnemySpawner()
 	TriggerArea->OnComponentBeginOverlap.AddDynamic(this, &AEnemySpawner::OnOverlapBegin);
 
 	//### Move Spawn Area to center of trap
-	SpawnBounds.MoveTo(RootComponent->GetComponentLocation());
-	SpawnBounds.Max = FVector(SpawnRadius/2, SpawnRadius/2, 0);
-	SpawnBounds.Min = FVector(-SpawnRadius/2, -SpawnRadius/2, 0);
+	SpawnBounds.Min = TrapMesh->GetComponentLocation();
+	SpawnBounds.Max = FVector(SpawnRadius, SpawnRadius, 0);
 
+	DrawDebugBox(GetWorld(), SpawnBounds.GetCenter(), SpawnBounds.Max, FColor::Red, false, 0.1, -1, 2);
 }
 
 void AEnemySpawner::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
@@ -49,6 +50,7 @@ void AEnemySpawner::BeginPlay()
 void AEnemySpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	SpawnBounds.Min = TrapMesh->GetComponentLocation();
 }
 
 void AEnemySpawner::SpawnEnemies(AActor* MyPlayer)
