@@ -47,6 +47,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		float SpawnRadius = 400;
 
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnEnemySpawn(FVector loc, FRotator rot);
+
 private:
 	FBox SpawnBounds;
 	

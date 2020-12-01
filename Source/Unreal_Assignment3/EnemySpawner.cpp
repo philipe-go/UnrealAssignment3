@@ -56,12 +56,13 @@ void AEnemySpawner::SpawnEnemies(AActor* MyPlayer)
 	FVector Location;
 	const FRotator Rotation = FRotator::ZeroRotator;
 
-
 	while (SpawnAmount > 0)
 	{
 		Location = FMath::RandPointInBox(SpawnBounds);
 		Location.Z = GetActorLocation().Z;
+		OnEnemySpawn(Location, Rotation);
 		AEnemy* NewEnemy = GetWorld()->SpawnActor<AEnemy>(EnemyToSpawn, Location, Rotation);
+
 		SpawnAmount--;
 	}
 	this->Destroy();
