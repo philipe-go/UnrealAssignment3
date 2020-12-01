@@ -108,3 +108,15 @@ void AUnreal_Assignment3Character::AOE()
 {
 	GetWorld()->SpawnActor<AActor>(AOEActor, AOEOrigin->GetComponentTransform());
 }
+
+void AUnreal_Assignment3Character::Dodging()
+{
+	HP = currHP;
+}
+
+void AUnreal_Assignment3Character::hitsPlayer()
+{
+	//enemyDMG = 0.1f
+	HP = HP - enemyDMG;
+	currHP = HP;
+}
