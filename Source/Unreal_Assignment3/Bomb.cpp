@@ -122,6 +122,7 @@ void ABomb::OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Ot
 // incase the AOE doesn't hit an enemy, it will destroy itself after 5 seconds
 void ABomb::NoBomb()
 {
+	Explode();
 	Destroy();
 }
 

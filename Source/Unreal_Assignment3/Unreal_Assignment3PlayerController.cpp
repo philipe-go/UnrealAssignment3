@@ -166,19 +166,28 @@ void AUnreal_Assignment3PlayerController::LoseHP()
 
 void AUnreal_Assignment3PlayerController::onAOE()
 {
-	GEngine->AddOnScreenDebugMessage(0, 2, FColor::Cyan, TEXT("BOOM!"));
+	
 	AUnreal_Assignment3Character* MyCharacter = Cast<AUnreal_Assignment3Character>(GetPawn());
 
-	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
-
-	if (Hit.bBlockingHit)
+	//If Mana is zero, the player cannot spawn spells
+	if (MyCharacter->Mana > 0)
 	{
-		FVector Direction = Hit.ImpactPoint - MyCharacter->GetActorLocation();
-		Direction.Z = 0;
-		MyCharacter->SetActorRotation(FRotationMatrix::MakeFromX(Direction).Rotator());
-	}
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Cyan, TEXT("BOOM!"));
+		FHitResult Hit;
+		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
 
-	MyCharacter->AOE();
-	MyCharacter->Mana -= 0.2f;
+		if (Hit.bBlockingHit)
+		{
+			FVector Direction = Hit.ImpactPoint - MyCharacter->GetActorLocation();
+			Direction.Z = 0;
+			MyCharacter->SetActorRotation(FRotationMatrix::MakeFromX(Direction).Rotator());
+		}
+
+		MyCharacter->AOE();
+		MyCharacter->Mana -= 0.2f;
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Blue, TEXT("Out of Mana!"));
+	}
 }
