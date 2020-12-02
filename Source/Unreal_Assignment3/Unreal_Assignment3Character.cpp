@@ -63,6 +63,9 @@ AUnreal_Assignment3Character::AUnreal_Assignment3Character()
 	// Add AOE Projectile
 	AOEOrigin = CreateAbstractDefaultSubobject<USceneComponent>(TEXT("AOEOrigin"));
 	AOEOrigin->SetupAttachment(RootComponent);
+
+	//### Get the Character Movement and set initial speed
+	InitialSpeed = GetCharacterMovement()->MaxWalkSpeed;
 }
 
 void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
@@ -94,6 +97,16 @@ void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
 			FRotator CursorR = CursorFV.Rotation();
 			CursorToWorld->SetWorldLocation(TraceHitResult.Location);
 			CursorToWorld->SetWorldRotation(CursorR);
+		}
+	}
+
+	if (bIsFast)
+	{
+		ElapsedTime--;
+		if (ElapsedTime < 10)
+		{
+			bIsFast = false;
+			GetCharacterMovement()->MaxWalkSpeed = InitialSpeed;
 		}
 	}
 }
@@ -152,7 +165,9 @@ void AUnreal_Assignment3Character::UseSpeedPotion()
 	if (SpeedPotions > 0)
 	{
 		SpeedPotions--;
-		bIsInSpeedState = true;
+		bIsFast = true;
+		ElapsedTime = 1000;
+		GetCharacterMovement()->MaxWalkSpeed = InitialSpeed * 2;
 	}
 	else
 	{
