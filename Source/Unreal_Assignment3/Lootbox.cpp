@@ -14,11 +14,12 @@ ALootbox::ALootbox()
 	// if we make a Mesh in .h , we have to make a component in .cpp
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(RootComponent);
+	Mesh->SetCanEverAffectNavigation(false);
 
 	TriggerArea = CreateDefaultSubobject<USphereComponent>(TEXT("Trigger Area"));
 	TriggerArea->InitSphereRadius(300);
 	TriggerArea->SetGenerateOverlapEvents(true);
-	TriggerArea->SetupAttachment(RootComponent);
+	TriggerArea->AttachToComponent(Mesh, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true));
 
 	//### Assign the Overlap methods to the framework events
 	TriggerArea->OnComponentBeginOverlap.AddDynamic(this, &ALootbox::OnOverlapBegin);
@@ -41,7 +42,6 @@ void ALootbox::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Other
 	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(OtherActor);
 	if (MyPlayer)
 	{
-		//bPlayerClose = true;
 		MyPlayer->OnActionReceiver = this;
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Red, TEXT("Player is Close!"));
 	}
@@ -53,7 +53,6 @@ void ALootbox::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(OtherActor);
 	if (MyPlayer)
 	{
-		//bPlayerClose = false;
 		MyPlayer->OnActionReceiver = nullptr;
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Red, TEXT("Player is Away!"));
 	}
