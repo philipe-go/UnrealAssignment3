@@ -34,9 +34,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		int RandomNum;
 
-	UPROPERTY(VisibleAnywhere)
-		class USphereComponent* TriggerArea;
-
 	UFUNCTION()
 		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
@@ -56,8 +53,8 @@ public:
 
 	void OpenLoot();
 
-	UInputComponent* ActionInput;
-
-	bool bPlayerClose = false;
+private:
+	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
+		class USphereComponent* TriggerArea;
 #pragma endregion
 };

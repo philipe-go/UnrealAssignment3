@@ -201,6 +201,7 @@ void AUnreal_Assignment3PlayerController::OnAction()
 	if (MyPlayer)
 	{
 		//### Bind the action to the lootbox methods.
-		Cast<ALootbox>(MyPlayer->OnActionReceiver)->OpenLoot();
+		auto* TempActor = Cast<ALootbox>(MyPlayer->OnActionReceiver);
+		if (TempActor) { TempActor->OpenLoot(); }
 	}
 }

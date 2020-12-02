@@ -29,9 +29,6 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* TrapMesh;
 
-	UPROPERTY(VisibleAnywhere)
-		class USphereComponent* TriggerArea;
-
 	UPROPERTY(EditAnywhere)
 	FBox SpawnBounds;
 
@@ -55,6 +52,9 @@ public:
 		void OnEnemySpawn(FVector loc, FRotator rot);
 
 private:
+	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
+		class USphereComponent* TriggerArea;
+
 	void SpawnEnemies(AActor* MyPlayer);
 #pragma endregion 
 };

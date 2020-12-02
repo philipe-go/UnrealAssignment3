@@ -17,8 +17,8 @@ AEnemySpawner::AEnemySpawner()
 
 	//### Trigger area initialization
 	TriggerArea = CreateDefaultSubobject<USphereComponent>(TEXT("Trigger Area"));
+	TriggerArea->AttachToComponent(TrapMesh, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true));
 	TriggerArea->InitSphereRadius(SpawnRadius);
-	TriggerArea->SetupAttachment(TrapMesh);
 
 	//### Delegate to start Overlap event when triggered
 	TriggerArea->OnComponentBeginOverlap.AddDynamic(this, &AEnemySpawner::OnOverlapBegin);
@@ -38,16 +38,12 @@ void AEnemySpawner::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* 
 void AEnemySpawner::BeginPlay()
 {
 	Super::BeginPlay();
-
-	
 }
 
 // Called every frame
 void AEnemySpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//SpawnBounds.Min = TrapMesh->GetComponentLocation();
-	//SpawnBounds.Min.Z = 0;
 }
 
 void AEnemySpawner::SpawnEnemies(AActor* MyPlayer)

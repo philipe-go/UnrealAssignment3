@@ -67,9 +67,16 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void hitsPlayer();
 
-	//### Field created to store the actor receiver of the action when pressing input 'E'
+	//### Field created to store the actor receiver of an action when pressing input 'E' (assigned when overlapped)
 	AActor* OnActionReceiver = nullptr;
-	
+
+	//### Properties to store the "Inventory" of Potions;
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+		int HPPotions = 0;
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+		int ManaPotions = 0;
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+		int SpeedPotions = 0;
 
 private:
 	/** Top down camera */
@@ -83,8 +90,5 @@ private:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
-
-
-	
 };
 

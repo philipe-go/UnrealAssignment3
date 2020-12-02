@@ -1,27 +1,47 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Potion.h"
+#include "Unreal_Assignment3Character.h"
 
-// Sets default values
 APotion::APotion()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
 	MeshComponent->SetupAttachment(RootComponent);
+	MeshComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
+	MeshComponent->SetCanEverAffectNavigation(false);
 }
 
-// Called when the game starts or when spawned
-void APotion::BeginPlay()
+void APotion::NotifyActorBeginOverlap(AActor* OtherActor)
 {
-	Super::BeginPlay();
+	Super::NotifyActorBeginOverlap(OtherActor);
+
+	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(OtherActor);
+	if (MyPlayer)
+	{
+		switch (PotionType)
+		{
+		case 0:
+		{
+			MyPlayer->HPPotions++;
+		}break;
+		case 1:
+		{
+			MyPlayer->ManaPotions++;
+		}break;
+		case 2:
+		{
+			MyPlayer->SpeedPotions++;
+		}break;
+		default:
+		{
+			MyPlayer->HPPotions++;
+		}break;
+		}
+		
+		Destroy();
+	}
 }
 
-// Called every frame
-void APotion::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
+
+
 
