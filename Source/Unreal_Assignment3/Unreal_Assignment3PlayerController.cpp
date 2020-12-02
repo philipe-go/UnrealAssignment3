@@ -46,6 +46,9 @@ void AUnreal_Assignment3PlayerController::SetupInputComponent()
 	InputComponent->BindAction("AOE", IE_Pressed, this, &AUnreal_Assignment3PlayerController::onAOE);
 
 	InputComponent->BindAction("Action", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnAction);
+	InputComponent->BindAction("HealthPotion", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnHPPotion);
+	InputComponent->BindAction("ManaPotion", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnManaPotion);
+	InputComponent->BindAction("SpeedPotion", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnSpeedPotion);
 }
 
 void AUnreal_Assignment3PlayerController::OnResetVR()
@@ -204,4 +207,25 @@ void AUnreal_Assignment3PlayerController::OnAction()
 		auto* TempActor = Cast<ALootbox>(MyPlayer->OnActionReceiver);
 		if (TempActor) { TempActor->OpenLoot(); }
 	}
+}
+
+void AUnreal_Assignment3PlayerController::OnHPPotion()
+{
+	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(GetPawn());
+
+	if (MyPlayer) { MyPlayer->UseHPPotion(); }
+}
+
+void AUnreal_Assignment3PlayerController::OnManaPotion()
+{
+	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(GetPawn());
+
+	if (MyPlayer) { MyPlayer->UseManaPotion(); }
+}
+
+void AUnreal_Assignment3PlayerController::OnSpeedPotion()
+{
+	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(GetPawn());
+
+	if (MyPlayer) { MyPlayer->UseSpeedPotion(); }
 }
