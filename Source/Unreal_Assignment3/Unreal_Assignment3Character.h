@@ -78,6 +78,18 @@ public:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 		int SpeedPotions = 0;
 
+	//### Methods called when using the potions binded to inputs on the ...controller.cpp
+	UFUNCTION(BlueprintCallable)
+		void UseHPPotion();
+	UFUNCTION(BlueprintCallable)
+		void UseManaPotion();
+	UFUNCTION(BlueprintCallable)
+		void UseSpeedPotion();
+
+	//### Property to handle Speed state of Player
+	UPROPERTY(BlueprintReadWrite)
+		bool bIsInSpeedState = false;
+
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))

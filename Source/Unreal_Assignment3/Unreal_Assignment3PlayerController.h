@@ -50,6 +50,12 @@ protected:
 	void onAOE();
 
 	void OnAction();
+
+	void OnHPPotion();
+
+	void OnManaPotion();
+
+	void OnSpeedPotion();
 };
 
 

@@ -67,15 +67,15 @@ AUnreal_Assignment3Character::AUnreal_Assignment3Character()
 
 void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
 {
-    Super::Tick(DeltaSeconds);
-	
+	Super::Tick(DeltaSeconds);
+
 	if (CursorToWorld != nullptr)
 	{
 		if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
 		{
 			if (UWorld* World = GetWorld())
 			{
-				
+
 				FHitResult HitResult;
 				FCollisionQueryParams Params(NAME_None, FCollisionQueryParams::GetUnknownStatId());
 				FVector StartLocation = TopDownCameraComponent->GetComponentLocation();
@@ -119,4 +119,43 @@ void AUnreal_Assignment3Character::hitsPlayer()
 	//enemyDMG = 0.1f
 	HP = HP - enemyDMG;
 	currHP = HP;
+}
+
+void AUnreal_Assignment3Character::UseHPPotion()
+{
+	if (HPPotions > 0)
+	{
+		HPPotions--;
+		HP = HP >= 1 ? 1 : HP + .1;
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Magenta, TEXT("No HP Potion to use"));
+	}
+}
+
+void AUnreal_Assignment3Character::UseManaPotion()
+{
+	if (ManaPotions > 0)
+	{
+		ManaPotions--;
+		Mana = Mana >= 1 ? 1 : Mana + .1;
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Magenta, TEXT("No Mana Potion to use"));
+	}
+}
+
+void AUnreal_Assignment3Character::UseSpeedPotion()
+{
+	if (SpeedPotions > 0)
+	{
+		SpeedPotions--;
+		bIsInSpeedState = true;
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Magenta, TEXT("No Speed Potion to use"));
+	}
 }
