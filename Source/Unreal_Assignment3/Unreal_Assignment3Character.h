@@ -87,11 +87,12 @@ public:
 		void UseSpeedPotion();
 
 	//### Property to store InitialSpeed of Player
-		float InitialSpeed;
+	float InitialSpeed;
 	UPROPERTY(BlueprintReadOnly)
 		bool bIsFast = false;
 	UPROPERTY(BlueprintReadOnly)
 		float ElapsedTime;
+	const float SPEED_POTION_EFFECT = 1000;
 
 private:
 	/** Top down camera */
