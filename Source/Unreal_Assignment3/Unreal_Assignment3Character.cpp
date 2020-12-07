@@ -166,8 +166,8 @@ void AUnreal_Assignment3Character::UseSpeedPotion()
 	{
 		SpeedPotions--;
 		bIsFast = true;
-		ElapsedTime = 1000;
-		GetCharacterMovement()->MaxWalkSpeed = InitialSpeed * 2;
+		ElapsedTime = SPEED_POTION_EFFECT;
+		GetCharacterMovement()->MaxWalkSpeed = InitialSpeed * 4;
 	}
 	else
 	{

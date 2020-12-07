@@ -62,6 +62,7 @@ void AEnemySpawner::SpawnEnemies(AActor* MyPlayer)
 		Location.Z = GetActorLocation().Z;
 		OnEnemySpawn(Location, Rotation); 
 		AEnemy* NewEnemy = GetWorld()->SpawnActor<AEnemy>(EnemyToSpawn, Location, Rotation);
+		NewEnemy->SpawnDefaultController();
 
 		SpawnAmount--;
 	}
