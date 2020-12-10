@@ -2,10 +2,12 @@
 
 
 #include "Enemy.h"
+#include "GameFramework/Character.h"
 #include "Unreal_Assignment3Character.h"
 #include "Unreal_Assignment3PlayerController.h"
 #include "GameFramework/PlayerController.h"
 #include "Engine/World.h"
+#include "GameFramework/Controller.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
@@ -35,7 +37,6 @@ void AEnemy::BeginPlay()
 	Super::BeginPlay();
 	
 	
-	
 }
 
 // Called every frame
@@ -57,7 +58,7 @@ void AEnemy::Tick(float DeltaTime)
 	if (Enemy_HP <= 0)
 	{
 		// This should give the player 10 XP
-		void onDeathXP();
+	
 		SkeletalMesh->SetScalarParameterValueOnMaterials(TEXT("Enemy is DEAD!"), HitValue);
 		Destroy();
 	}
@@ -89,11 +90,6 @@ void AEnemy::onAttack()
 	Detected();
 }
 
-void AEnemy::onDeathXP(AActor* OtherActor)
-{
-	AUnreal_Assignment3Character* Player = Cast<AUnreal_Assignment3Character>(OtherActor);
-	Player->XP_Received = 10.0f;
-}
 
 
 

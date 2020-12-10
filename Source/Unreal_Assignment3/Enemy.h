@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Unreal_Assignment3Character.h"
+#include "Unreal_Assignment3PlayerController.h"
 #include "GameFramework/Character.h"
 #include "Enemy.generated.h"
 
@@ -29,11 +31,16 @@ public:
 	float Enemy_HP = 1.0f;
 
 
+
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
+
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -46,7 +53,5 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		void Detected();
 
-	// When Enemy Dies it gives XP
-	void onDeathXP(AActor* OtherActor);
 
 };

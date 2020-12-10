@@ -67,7 +67,7 @@ public:
 
 	/** Player Experience Needed **/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		float XP_Needed = 10.0f;
+		float XP_Needed = 0.9f;
 
 	/** Player Experience Received **/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -88,6 +88,10 @@ public:
 	// Level Up System
 	UFUNCTION(BlueprintCallable)
 		void LevelUpSystem();
+
+	// Level Up System
+	UFUNCTION(BlueprintCallable)
+		void GiveXP();
 
 	//### Field created to store the actor receiver of an action when pressing input 'E' (assigned when overlapped)
 	AActor* OnActionReceiver = nullptr;

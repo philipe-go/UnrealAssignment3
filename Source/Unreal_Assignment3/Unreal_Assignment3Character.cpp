@@ -73,7 +73,7 @@ AUnreal_Assignment3Character::AUnreal_Assignment3Character()
 void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-
+	
 	if (CursorToWorld != nullptr)
 	{
 		if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
@@ -138,10 +138,9 @@ void AUnreal_Assignment3Character::hitsPlayer()
 
 void AUnreal_Assignment3Character::LevelUpSystem()
 {
-	// put this in the BP_Enemy
-	// XP_Received = 10.0f; 
+	currentEXP = XP_Received + currentEXP;
 
-	// XP_Needed is 10 right now
+	// XP_Needed is 1.0 right now
 	if (currentEXP > XP_Needed)
 	{
 		// Levels up 
@@ -150,13 +149,13 @@ void AUnreal_Assignment3Character::LevelUpSystem()
 		currLvL = currLvL++;
 
 		// Calculates the next levels reqiured XP point
-		XP_Needed = currLvL * 10.0f;
+		XP_Needed = currLvL * 5.0f;
 
-		//Increase maxHP by 10 
-		HP = HP + 10.0f; 
+		//Increase maxHP 
+		HP = HP + 0.2f; 
 
-		//Increase maxMana by 10 
-		Mana = Mana + 10.0f;
+		//Increase maxMana 
+		Mana = Mana + 0.2f;
 
 	}
 	else
@@ -165,6 +164,14 @@ void AUnreal_Assignment3Character::LevelUpSystem()
 		currentEXP = XP_Received + currentEXP;
 
 	}
+
+
+}
+
+void AUnreal_Assignment3Character::GiveXP()
+{
+	// Killing an Enemy will give the player XP
+	XP_Received =  0.5f;
 }
 
 void AUnreal_Assignment3Character::UseHPPotion()
