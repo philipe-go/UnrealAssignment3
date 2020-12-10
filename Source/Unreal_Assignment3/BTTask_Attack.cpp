@@ -11,7 +11,9 @@ EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 
 	if (MyEnemy)
 	{
-		MyEnemy->onAttack();
+		//#### This calls the BlueprintImplementableEvent in the BP_Enemy
+		MyEnemy->AttackEvent();
+
 		return EBTNodeResult::Succeeded;
 	}
 

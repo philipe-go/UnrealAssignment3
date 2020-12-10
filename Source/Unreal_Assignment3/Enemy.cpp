@@ -67,13 +67,10 @@ void AEnemy::Tick(float DeltaTime)
 	FVector PlayerLocation = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 	FVector EnemyPos = GetActorLocation();
 
-
-
 	if (FVector::Dist(PlayerLocation, EnemyPos) <= 400)
 	{
 		onAttack();
 	}
-
 }
 
 // Called to bind functionality to input

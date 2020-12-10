@@ -19,16 +19,16 @@ public:
 
 	//Enemies
 	UPROPERTY(BlueprintReadWrite)
-	USkeletalMeshComponent* SkeletalMesh;
+		USkeletalMeshComponent* SkeletalMesh;
 
 	float HitValue;
 
 	UFUNCTION(BlueprintCallable)
-	void OnHit();
+		void OnHit();
 
 	/** Enemy Health **/
 	UPROPERTY(BlueprintReadOnly)
-	float Enemy_HP = 1.0f;
+		float Enemy_HP = 1.0f;
 
 
 
@@ -38,7 +38,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 
 
 	// Called every frame
@@ -48,6 +48,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void onAttack();
+
+	//#### Blueprint Event to Play the Animation Montage
+	UFUNCTION(BlueprintImplementableEvent)
+		void AttackEvent();
 
 
 	UFUNCTION(BlueprintImplementableEvent)
