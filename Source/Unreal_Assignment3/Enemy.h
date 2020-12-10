@@ -30,17 +30,15 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 		float Enemy_HP = 1.0f;
 
-
-
-
+	//#### Ultimate Ability player's reward rate
+	const float ULTIMATE_REWARD = 0.05;
+	void UltimateAbilityReward();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
-
-
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -56,6 +54,4 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void Detected();
-
-
 };

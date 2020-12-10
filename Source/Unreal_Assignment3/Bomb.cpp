@@ -113,6 +113,9 @@ void ABomb::OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Ot
 	{
 		EnemyAI->Enemy_HP -= 0.3f;
 
+		//### When hit an enemy reward the player with Ultimate Ability Points
+		EnemyAI->UltimateAbilityReward();
+
 		Explode();
 		Destroy();
 	}

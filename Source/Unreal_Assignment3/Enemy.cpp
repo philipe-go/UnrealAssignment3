@@ -26,10 +26,22 @@ void AEnemy::OnHit()
     
 	// When the enemy gets hit, he loses 10%
 	Enemy_HP -= 0.1f;
+	UltimateAbilityReward();
 
 	GEngine->AddOnScreenDebugMessage(0, 2, FColor::Red, TEXT("Enemy is HIT"));
 }
 
+
+void AEnemy::UltimateAbilityReward()
+{
+	//#### Code to increase the UltimaAbility Player's property when an Enemy is killed
+	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(GetWorld()->GetFirstPlayerController()->GetPawn());
+	if (MyPlayer)
+	{
+		MyPlayer->UltimateAbility += ULTIMATE_REWARD;
+		FMath::Clamp(MyPlayer->UltimateAbility, 0.0f, 1.0f);
+	}
+}
 
 // Called when the game starts or when spawned
 void AEnemy::BeginPlay()

@@ -97,6 +97,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void GiveXP();
 
+	//### Ultimate Ability meter
+	UPROPERTY(BlueprintReadOnly)
+		float UltimateAbility = 0.0f;
+
 	//### Field created to store the actor receiver of an action when pressing input 'E' (assigned when overlapped)
 	AActor* OnActionReceiver = nullptr;
 
