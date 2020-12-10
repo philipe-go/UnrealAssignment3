@@ -50,6 +50,8 @@ void AUnreal_Assignment3PlayerController::SetupInputComponent()
 	InputComponent->BindAction("HealthPotion", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnHPPotion);
 	InputComponent->BindAction("ManaPotion", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnManaPotion);
 	InputComponent->BindAction("SpeedPotion", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnSpeedPotion);
+
+	InputComponent->BindAction("UltimateAbility", IE_Pressed, this, &AUnreal_Assignment3PlayerController::OnUltimateAbility);
 }
 
 void AUnreal_Assignment3PlayerController::OnResetVR()
@@ -229,4 +231,13 @@ void AUnreal_Assignment3PlayerController::OnSpeedPotion()
 	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(GetPawn());
 
 	if (MyPlayer) { MyPlayer->UseSpeedPotion(); }
+}
+
+void AUnreal_Assignment3PlayerController::OnUltimateAbility()
+{
+	AUnreal_Assignment3Character* MyPlayer = Cast<AUnreal_Assignment3Character>(GetPawn());
+	if (MyPlayer)
+	{
+		MyPlayer->UseUltimateAbility();
+	}
 }

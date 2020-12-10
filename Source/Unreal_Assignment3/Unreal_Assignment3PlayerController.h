@@ -60,6 +60,9 @@ protected:
 
 	//#### Callback when drinking the SpeedPotion
 	void OnSpeedPotion();
+
+	//#### Callback when using the Ultimate Ability
+	void OnUltimateAbility();
 };
 
 
