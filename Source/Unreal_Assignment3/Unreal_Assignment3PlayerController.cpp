@@ -7,6 +7,7 @@
 #include "Unreal_Assignment3Character.h"
 #include "Engine/World.h"
 #include "Lootbox.h"
+#include "MySaveGame.h"
 
 AUnreal_Assignment3PlayerController::AUnreal_Assignment3PlayerController()
 {

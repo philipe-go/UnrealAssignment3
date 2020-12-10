@@ -94,6 +94,14 @@ public:
 		float ElapsedTime;
 	const float SPEED_POTION_EFFECT = 1000;
 
+	//#### Function to Save the game and being called from PauseMenu
+	UFUNCTION(BlueprintCallable)
+		void SaveGame();
+
+	//#### Function to Load the game and being called from PauseMenu
+	UFUNCTION(BlueprintCallable)
+		void LoadGame();
+
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
