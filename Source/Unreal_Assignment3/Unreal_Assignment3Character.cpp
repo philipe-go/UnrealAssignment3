@@ -11,6 +11,8 @@
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
+#include "MySaveGame.h"
+#include "Kismet/GameplayStatics.h"
 
 AUnreal_Assignment3Character::AUnreal_Assignment3Character()
 {
@@ -174,3 +176,44 @@ void AUnreal_Assignment3Character::UseSpeedPotion()
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Magenta, TEXT("No Speed Potion to use"));
 	}
 }
+
+void AUnreal_Assignment3Character::SaveGame()
+{
+	UMySaveGame* SaveGameObj = Cast<UMySaveGame>(UGameplayStatics::CreateSaveGameObject(UMySaveGame::StaticClass()));
+	if (SaveGameObj)
+	{
+		FAsyncSaveGameToSlotDelegate SaveGameAsync;
+		SaveGameObj->PlayerHP = this->HP;
+		SaveGameObj->PlayerMP = this->Mana;
+		SaveGameObj->HPPotions = this->HPPotions;
+		SaveGameObj->ManaPotions = this->ManaPotions;
+		SaveGameObj->SpeedPotions = this->SpeedPotions;
+		SaveGameObj->PlayerTransform = this->GetActorTransform();
+
+		UGameplayStatics::AsyncSaveGameToSlot(SaveGameObj, SaveGameObj->SaveSlotName, SaveGameObj->UserIndex, SaveGameAsync);
+		
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Orange, TEXT("Game Saved"));
+	}
+}
+
+void AUnreal_Assignment3Character::LoadGame()
+{
+	UMySaveGame* LoadGameObj = Cast<UMySaveGame>(UGameplayStatics::CreateSaveGameObject(UMySaveGame::StaticClass()));
+	
+	if (LoadGameObj)
+	{
+		FAsyncLoadGameFromSlotDelegate LoadGameAsync;
+		LoadGameObj = Cast<UMySaveGame>(UGameplayStatics::LoadGameFromSlot(LoadGameObj->SaveSlotName, LoadGameObj->UserIndex));
+
+		this->SetActorTransform(LoadGameObj->PlayerTransform);
+		this->HP = LoadGameObj->PlayerHP;
+		this->Mana = LoadGameObj->PlayerMP;
+		this->HPPotions = LoadGameObj->HPPotions;
+		this->ManaPotions = LoadGameObj->ManaPotions;
+		this->SpeedPotions = LoadGameObj->SpeedPotions;
+
+		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Orange, TEXT("Load Succesfully"));
+	}
+}
+
+

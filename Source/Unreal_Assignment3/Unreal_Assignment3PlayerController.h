@@ -49,12 +49,16 @@ protected:
 	/** Shooting AOE Bombs. */
 	void onAOE();
 
+	//#### Action to open Lootbox
 	void OnAction();
 
+	//#### Callback when drinking the HPPotion
 	void OnHPPotion();
 
+	//#### Callback when drinking the MPPotion
 	void OnManaPotion();
 
+	//#### Callback when drinking the SpeedPotion
 	void OnSpeedPotion();
 };
 
