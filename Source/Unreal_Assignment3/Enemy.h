@@ -42,8 +42,11 @@ public:
 
 	void onAttack();
 
+
 	UFUNCTION(BlueprintImplementableEvent)
 		void Detected();
 
+	// When Enemy Dies it gives XP
+	void onDeathXP(AActor* OtherActor);
 
 };

@@ -61,11 +61,33 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float Mana = 1.0f;
 
+	/** Player Current Experience **/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float currentEXP = 0.5f;
+
+	/** Player Experience Needed **/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float XP_Needed = 10.0f;
+
+	/** Player Experience Received **/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float XP_Received = 0.0f;
+
+	/** Player Current Level **/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float currLvL = 1.0f;
+
+	// Dodging Func
 	UFUNCTION(BlueprintCallable)
 		void Dodging();
 
+	// hits the player Func
 	UFUNCTION(BlueprintCallable)
 		void hitsPlayer();
+
+	// Level Up System
+	UFUNCTION(BlueprintCallable)
+		void LevelUpSystem();
 
 	//### Field created to store the actor receiver of an action when pressing input 'E' (assigned when overlapped)
 	AActor* OnActionReceiver = nullptr;

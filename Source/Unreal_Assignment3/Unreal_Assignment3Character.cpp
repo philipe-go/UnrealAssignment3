@@ -136,6 +136,37 @@ void AUnreal_Assignment3Character::hitsPlayer()
 	currHP = HP;
 }
 
+void AUnreal_Assignment3Character::LevelUpSystem()
+{
+	// put this in the BP_Enemy
+	// XP_Received = 10.0f; 
+
+	// XP_Needed is 10 right now
+	if (currentEXP > XP_Needed)
+	{
+		// Levels up 
+
+		//Increase level by one
+		currLvL = currLvL++;
+
+		// Calculates the next levels reqiured XP point
+		XP_Needed = currLvL * 10.0f;
+
+		//Increase maxHP by 10 
+		HP = HP + 10.0f; 
+
+		//Increase maxMana by 10 
+		Mana = Mana + 10.0f;
+
+	}
+	else
+	{
+		//  Sets the Current XP
+		currentEXP = XP_Received + currentEXP;
+
+	}
+}
+
 void AUnreal_Assignment3Character::UseHPPotion()
 {
 	if (HPPotions > 0)

@@ -35,12 +35,15 @@ void AEnemy::BeginPlay()
 	Super::BeginPlay();
 	
 	
+	
 }
 
 // Called every frame
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	
 
 	// LERP -> Color goes back to white
 	HitValue -= DeltaTime;
@@ -53,7 +56,8 @@ void AEnemy::Tick(float DeltaTime)
 	// Enemy Dies if their HP < 0
 	if (Enemy_HP <= 0)
 	{
-
+		// This should give the player 10 XP
+		void onDeathXP();
 		SkeletalMesh->SetScalarParameterValueOnMaterials(TEXT("Enemy is DEAD!"), HitValue);
 		Destroy();
 	}
@@ -83,6 +87,12 @@ void AEnemy::onAttack()
 	GEngine->AddOnScreenDebugMessage(0, 0, FColor::Red, TEXT("ANGRY ENEMY!"));
 
 	Detected();
+}
+
+void AEnemy::onDeathXP(AActor* OtherActor)
+{
+	AUnreal_Assignment3Character* Player = Cast<AUnreal_Assignment3Character>(OtherActor);
+	Player->XP_Received = 10.0f;
 }
 
 
