@@ -77,6 +77,10 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		float currLvL = 1.0f;
 
+	/** Level up Niagra **/
+	UFUNCTION(BlueprintImplementableEvent)
+		void lvlUpParticles();
+
 	// Dodging Func
 	UFUNCTION(BlueprintCallable)
 		void Dodging();

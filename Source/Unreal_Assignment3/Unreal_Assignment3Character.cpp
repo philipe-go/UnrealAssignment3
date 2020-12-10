@@ -139,11 +139,14 @@ void AUnreal_Assignment3Character::hitsPlayer()
 void AUnreal_Assignment3Character::LevelUpSystem()
 {
 	currentEXP = XP_Received + currentEXP;
-
+	
 	// XP_Needed is 1.0 right now
 	if (currentEXP > XP_Needed)
 	{
 		// Levels up 
+
+		//Particles to celebrate leveling up
+		lvlUpParticles();
 
 		//Increase level by one
 		currLvL = currLvL++;
@@ -155,7 +158,12 @@ void AUnreal_Assignment3Character::LevelUpSystem()
 		HP = HP + 0.2f; 
 
 		//Increase maxMana 
-		Mana = Mana + 0.2f;
+		Mana = HP + 0.05f;
+
+		//player gains health and mana back to their current max hp
+		HP = HP;
+		Mana = Mana;
+		
 
 	}
 	else
