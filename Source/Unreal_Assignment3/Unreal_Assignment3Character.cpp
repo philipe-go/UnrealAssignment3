@@ -13,6 +13,9 @@
 #include "Engine/World.h"
 #include "MySaveGame.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "DrawDebugHelpers.h"
+#include "Enemy.h"
 
 AUnreal_Assignment3Character::AUnreal_Assignment3Character()
 {
@@ -182,6 +185,7 @@ void AUnreal_Assignment3Character::GiveXP()
 	XP_Received =  0.5f;
 }
 
+
 void AUnreal_Assignment3Character::UseHPPotion()
 {
 	if (HPPotions > 0)
@@ -222,6 +226,34 @@ void AUnreal_Assignment3Character::UseSpeedPotion()
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Magenta, TEXT("No Speed Potion to use"));
 	}
 }
+
+void AUnreal_Assignment3Character::UseUltimateAbility()
+{
+	if (UltimateAbility >= 1.0)
+	{
+		ParticleUltimateAbility();
+		UltimateAbility = 0;
+
+		//#### Sphere Overlap Actors to get the array and destroy enemies which are inside the radius
+		TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+		ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_WorldDynamic));
+		TArray<AActor*> ActorsToIgnore;
+		ActorsToIgnore.Add(GetOwner());
+		TArray<AActor*> OverlappedActors;
+		UKismetSystemLibrary::SphereOverlapActors(GetWorld(),GetActorLocation(),400,ObjectTypes
+													,nullptr,ActorsToIgnore,OverlappedActors);
+		for (AActor* Actors : OverlappedActors)
+		{
+			AEnemy* TempEnemy = Cast<AEnemy>(Actors);
+			if (TempEnemy)
+			{
+				TempEnemy->Destroy();
+			}
+		}
+		DrawDebugSphere(GetWorld(), GetActorLocation(), 400, 10, FColor::Yellow, false, 1, 0, 1);
+	}
+}
+
 
 void AUnreal_Assignment3Character::SaveGame()
 {
