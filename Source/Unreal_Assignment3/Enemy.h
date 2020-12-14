@@ -31,7 +31,7 @@ public:
 		float Enemy_HP = 1.0f;
 
 	//#### Ultimate Ability player's reward rate
-	const float ULTIMATE_REWARD = 0.55;
+	const float ULTIMATE_REWARD = 0.2;
 	void UltimateAbilityReward();
 
 protected:
