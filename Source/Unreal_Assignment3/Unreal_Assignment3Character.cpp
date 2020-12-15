@@ -119,6 +119,8 @@ void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
 void AUnreal_Assignment3Character::Shoot()
 {
 	GetWorld()->SpawnActor<AActor>(ProjectileActor, ProjectileOrigin->GetComponentTransform());
+	Mana -= 0.1f;
+	FMath::Clamp(Mana, 0.0f, 1.0f);
 	ShootAnim();
 }
 
@@ -137,6 +139,7 @@ void AUnreal_Assignment3Character::hitsPlayer()
 	//enemyDMG = 0.1f
 	HP = HP - enemyDMG;
 	currHP = HP;
+	FMath::Clamp(HP, 0.0f, 1.0f);
 }
 
 void AUnreal_Assignment3Character::LevelUpSystem()

@@ -5,6 +5,7 @@
 #include "Components/SphereComponent.h"
 #include "Unreal_Assignment3Character.h"
 #include "Enemy.h"
+#include "NavigationSystem.h"
 
 // Sets default values
 AEnemySpawner::AEnemySpawner()
@@ -59,6 +60,7 @@ void AEnemySpawner::SpawnEnemies(AActor* MyPlayer)
 	while (SpawnAmount > 0)
 	{
 		Location = FMath::RandPointInBox(SpawnBounds);
+		UNavigationSystemV1::ProjectPointToNavigation(GetWorld(), Location, NavMeshAgent);
 		Location.Z = GetActorLocation().Z;
 		OnEnemySpawn(Location, Rotation); 
 		AEnemy* NewEnemy = GetWorld()->SpawnActor<AEnemy>(EnemyToSpawn, Location, Rotation);
