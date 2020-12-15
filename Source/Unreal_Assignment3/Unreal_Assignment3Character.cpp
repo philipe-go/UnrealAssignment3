@@ -119,6 +119,8 @@ void AUnreal_Assignment3Character::Tick(float DeltaSeconds)
 void AUnreal_Assignment3Character::Shoot()
 {
 	GetWorld()->SpawnActor<AActor>(ProjectileActor, ProjectileOrigin->GetComponentTransform());
+	Mana -= 0.1f;
+	FMath::Clamp(Mana, 0.0f, 1.0f);
 	ShootAnim();
 }
 
@@ -137,6 +139,7 @@ void AUnreal_Assignment3Character::hitsPlayer()
 	//enemyDMG = 0.1f
 	HP = HP - enemyDMG;
 	currHP = HP;
+	FMath::Clamp(HP, 0.0f, 1.0f);
 }
 
 void AUnreal_Assignment3Character::LevelUpSystem()
@@ -191,7 +194,7 @@ void AUnreal_Assignment3Character::UseHPPotion()
 	if (HPPotions > 0)
 	{
 		HPPotions--;
-		HP = HP >= 1 ? 1 : HP + .1;
+		HP = HP >= 1 ? 1 : HP + .5;
 	}
 	else
 	{
@@ -204,7 +207,7 @@ void AUnreal_Assignment3Character::UseManaPotion()
 	if (ManaPotions > 0)
 	{
 		ManaPotions--;
-		Mana = Mana >= 1 ? 1 : Mana + .1;
+		Mana = Mana >= 1 ? 1 : Mana + .5;
 	}
 	else
 	{
@@ -289,6 +292,11 @@ void AUnreal_Assignment3Character::LoadGame()
 		this->HPPotions = LoadGameObj->HPPotions;
 		this->ManaPotions = LoadGameObj->ManaPotions;
 		this->SpeedPotions = LoadGameObj->SpeedPotions;
+
+		//UGameplayStatics::SetGamePaused(GetWorld(), false);
+
+		APlayerController* PController = GetWorld()->GetFirstPlayerController();
+		PController->SetInputMode(FInputModeGameAndUI());
 
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Orange, TEXT("Load Succesfully"));
 	}

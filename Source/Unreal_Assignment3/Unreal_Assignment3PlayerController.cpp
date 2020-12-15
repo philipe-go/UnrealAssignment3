@@ -150,7 +150,6 @@ void AUnreal_Assignment3PlayerController::OnShoot()
 		}
 
 		UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, MyCharacter->GetActorLocation());
-		MyCharacter->Mana -= 0.1f;
 		MyCharacter->Shoot();
 
 	}
