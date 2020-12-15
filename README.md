@@ -30,3 +30,6 @@ Felix Soumpholphakdy
 - **Task 12** - Potions: press **1** for HP potions, **2** for MP potions and **3** for Speed Potions;
 - **Task 13** - Ultimate Ability - press **LEFT CONTROL** to use the ultimate ability (kills all enemies within a radius);
 - **Task 15** - Loot - press **E** to open the loot gifts when you find them;
+
+
+<p align="center"> <img src="./Tutorial/HUD.png"></p>
