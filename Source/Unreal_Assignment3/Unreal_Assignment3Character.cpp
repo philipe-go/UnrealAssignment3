@@ -191,7 +191,7 @@ void AUnreal_Assignment3Character::UseHPPotion()
 	if (HPPotions > 0)
 	{
 		HPPotions--;
-		HP = HP >= 1 ? 1 : HP + .1;
+		HP = HP >= 1 ? 1 : HP + .5;
 	}
 	else
 	{
@@ -204,7 +204,7 @@ void AUnreal_Assignment3Character::UseManaPotion()
 	if (ManaPotions > 0)
 	{
 		ManaPotions--;
-		Mana = Mana >= 1 ? 1 : Mana + .1;
+		Mana = Mana >= 1 ? 1 : Mana + .5;
 	}
 	else
 	{
@@ -289,6 +289,11 @@ void AUnreal_Assignment3Character::LoadGame()
 		this->HPPotions = LoadGameObj->HPPotions;
 		this->ManaPotions = LoadGameObj->ManaPotions;
 		this->SpeedPotions = LoadGameObj->SpeedPotions;
+
+		//UGameplayStatics::SetGamePaused(GetWorld(), false);
+
+		APlayerController* PController = GetWorld()->GetFirstPlayerController();
+		PController->SetInputMode(FInputModeGameAndUI());
 
 		GEngine->AddOnScreenDebugMessage(0, 2, FColor::Orange, TEXT("Load Succesfully"));
 	}
