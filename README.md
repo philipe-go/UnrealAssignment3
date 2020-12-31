@@ -12,13 +12,13 @@ Felix Soumpholphakdy
 
 ## Section 3: Development Team :video_game: 
 
-[Arisa Ohashi](https://github.com/VanillaSpace)
+[Arisa Ohashi](https://github.com/VanillaSpace){:target="_blank"}
 
-[Philipe Gouveia](https://github.com/philipe-go)
+[Philipe Gouveia](https://github.com/philipe-go){:target="_blank"}
 
 ## Section 4: Development Process :hourglass: 
 
-[Trello Board](https://trello.com/b/joPnxdkP)
+[Trello Board](https://trello.com/b/joPnxdkP){:target="_blank"}
 
 ## Section 5: Remarks :joystick: 
 
