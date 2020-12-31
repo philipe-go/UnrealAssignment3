@@ -18,7 +18,7 @@ Felix Soumpholphakdy
 
 ## Section 4: Development Process :hourglass: 
 
-[Trello Board](https://trello.com/b/joPnxdkP?target=_blank)
+[Trello Board](https://trello.com/b/joPnxdkP?target="_blank")
 
 ## Section 5: Remarks :joystick: 
 
