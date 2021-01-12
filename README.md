@@ -4,7 +4,7 @@
 
 ## Section 1: The Project :floppy_disk: 
 
-        In this assignment, you will implement game features in Unreal Engine 4 in C++. You need to use the project template “Top Down”. This document will describe the requirements in detail.
+        In this assignment, we had to implement game features in Unreal Engine 4 with C++. We needed to use the project template “Top Down”. All tasks where tracked and controlled as per a scrum board which can be found in the Section 4 below. 
 
 ## Section 2: Professor :robot: 
 
